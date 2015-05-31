@@ -56,6 +56,8 @@
       return _date.toJSON();
     }else if( _dateType === '[object Number]' ){
       return new Date(_date).toJSON();
+    }else if( _dateType === '[object String]' ){
+      return _date;
     }
   }
 
