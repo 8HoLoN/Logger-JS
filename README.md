@@ -13,11 +13,11 @@ appLogger.log("log 2","error");
 appLogger.log("光","warning");
 >```
 >```javascript
-appLogger.save({
-  after:new Date()-1000,
-  before:new Date()-4000
-});                                               // save the logs between the specified dates in a file
-appLogger.save({
+appLogger.save({                                  // save the logs between the specified dates in a file
+  after:new Date()-4000,                          // argument could be Date, timestamp or IS0 8601 string
+  before:new Date()-1000
+});
+appLogger.save({                                  // save the logs between the specified level in a file
   lowestLevel:"notice",
   highestLevel:"warning"
-});                                               // save the logs between the specified level in a file
+});
