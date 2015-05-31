@@ -2,7 +2,8 @@
 A library to manage logs in JavaScript app
 
 ## Use
-*Turn on the silent mode to preserve the browser console
+* Turn on the silent mode to preserve the browser console.
+
 >```javascript
 var appLogger = new Logger({silentMode:true});    // mute the browser console
 >```

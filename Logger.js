@@ -20,8 +20,8 @@
   Logger.prototype.log = function(_msg,_level) {
 
     var _date = new Date().toJSON();
-    var _log = _date + ' - ' + _msg;
     var _level = _level || this.level;
+    var _log = '['+_date + '] ['+ _level +']\t- ' + _msg;
     if(!this.silentMode){
       if( typeof console === 'object' && typeof console.log === 'function' ){
         console.log(_log);
@@ -35,9 +35,12 @@
   Logger.prototype.save = function(_args) {
     _args = _args || {};
     var _logs = '';
+    if(_args.after)var _after = _checkDate(_args.after);
+    if(_args.before)var _before = _checkDate(_args.before);
+
     for(var i=0;i<this.logs.length;i++){
-      if( (!_args.after || this.logs[i].date >= _args.after) &&
-          (!_args.before || this.logs[i].date <= _args.before) &&
+      if( (!_args.after || this.logs[i].date >= _after) &&
+          (!_args.before || this.logs[i].date <= _before) &&
           (!_args.lowestLevel || this.logs[i].level <= this.levels.indexOf(_args.lowestLevel)) &&
           (!_args.highestLevel || this.logs[i].level >= this.levels.indexOf(_args.highestLevel)) ){
         _logs += (_logs===''?'':this.lineBreaker) + this.logs[i].log;
@@ -46,6 +49,15 @@
     _saveFile(_logs,'logs');
 
   };
+
+  function _checkDate(_date){
+    var _dateType = Object.prototype.toString.call(_date);
+    if( _dateType === '[object Date]' ){
+      return _date.toJSON();
+    }else if( _dateType === '[object Number]' ){
+      return new Date(_date).toJSON();
+    }
+  }
 
   function _saveFile(l_outputFile,l_outputFilename){
     //*
