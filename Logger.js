@@ -1,6 +1,6 @@
 /*!* @preserve
  *
- * https://github.com/8HoLoN/Logger-JS
+ * https://github.com/8HoLoN/Logger.js
  * @version: 0.2.00 ( June 2015 )
  * @author 8HoLoN / https://github.com/8HoLoN/
  * < 8holon [at] gmail.com >
