@@ -1,4 +1,4 @@
-# Logger-JS
+# Logger.js
 A library to manage logs in JavaScript app
 
 ## Use
